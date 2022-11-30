@@ -1,22 +1,30 @@
-import productList from '../data/productList.json';
-import cartSlice from '../redux/actions';
+
+import {cartSlice, fetchAllProducts} from '../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
+import {useEffect} from 'react';
 
 import '../styles/home.scss';
 
 const Home = () => {
-  const {cartProductsIds} = useSelector((state) => state.cart);
+  const {cart, products} = useSelector((state) => state);
+
   const {addToCart, removeFromCart} = cartSlice.actions;
 
   const dispatch = useDispatch()
 
   function isAddedToCart(id) {
-    return cartProductsIds.includes(id)
+    return cart.cartProductsIds.includes(id)
   }
+
+  useEffect(() => {
+    dispatch(fetchAllProducts('http://localhost:3000/products'))
+  }, [dispatch])
+  
+  
   return (
     <div className="container product-catalogue">
       <div className="row">
-        {productList.products.map((product) => {
+        {products.data?.map((product) => {
           return (
             <div className="wrapper col-md-4" key={product.id}>
               <div className="card">

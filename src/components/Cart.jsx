@@ -1,6 +1,6 @@
 import productList from '../data/productList.json';
 import {useDispatch, useSelector} from 'react-redux';
-import cartSlice from '../redux/actions';
+import {cartSlice} from '../redux/actions';
 
 import '../styles/cart.scss'
 
