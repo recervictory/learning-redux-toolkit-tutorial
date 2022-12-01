@@ -29,7 +29,7 @@ const Home = () => {
   return (
     <div className="container product-catalogue">
       <div className="row">
-        {products.data?.map((product) => {
+        {data?.map((product) => {
           return (
             <div className="wrapper col-md-4" key={product.id}>
               <div className="card">
