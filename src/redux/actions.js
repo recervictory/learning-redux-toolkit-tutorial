@@ -31,7 +31,7 @@ export const productSlice = createSlice({
     name: 'products',
     initialState: {
         data: [],
-        fetchStatus: '',
+        fetchStatus: 'idle',
     },
     reducers : {},
     extraReducers: (builder) =>{

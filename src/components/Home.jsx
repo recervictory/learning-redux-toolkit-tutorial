@@ -7,6 +7,7 @@ import '../styles/home.scss';
 
 const Home = () => {
   const {cart, products} = useSelector((state) => state);
+  const {fetchStatus, data} = products;
 
   const {addToCart, removeFromCart} = cartSlice.actions;
 
@@ -17,10 +18,14 @@ const Home = () => {
   }
 
   useEffect(() => {
-    dispatch(fetchAllProducts('http://localhost:3000/products'))
-  }, [dispatch])
+    if (fetchStatus === 'idle') {
+      dispatch(fetchAllProducts('http://localhost:3000/products'))
+    }
+    
+  }, [dispatch,fetchStatus])
   
   
+  console.log('Products api fetch ' + fetchStatus)
   return (
     <div className="container product-catalogue">
       <div className="row">
